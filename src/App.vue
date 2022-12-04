@@ -1,36 +1,35 @@
 <template>
   <div class="heading">
     <h1>Random Anime Quote Generator</h1>
-    <!-- <img src="../src/assets/sakura.png"> -->
   </div>
   <p>Made with <a href="https://animechan.vercel.app/">Animechan API</a></p>
-  <Generate @generated="fetchAPI" :text="Object.keys(quoteInfo).length === 0 ? 'Generate quote' : 'Refresh quote'"/>
-  <Result v-if="Object.keys(quoteInfo).length !== 0" :quote="quoteInfo.quote" :character="quoteInfo.character" :anime="quoteInfo.anime"/>
+  <Generate @generate="fetchAPI" :text="Object.keys(quoteInfo).length === 0 ? 'Generate quote' : 'Refresh quote'"/>
+  <Result 
+    v-if="showResult"
+    :quote="quoteInfo ? quoteInfo : null"
+  />
 </template>
 
-<script>
+<script setup>
+import { ref } from "vue"
 import Generate from './components/Generate.vue'
 import Result from './components/Result.vue'
-export default {
-  name: 'App',
-  components: {Generate, Result},
-  data() {
-    return {
-      quoteInfo: {}
-    }
-  },
-  methods: {
-    fetchAPI() {
-      fetch('https://animechan.vercel.app/api/random')
-      .then(response => response.json())
-      .then(quote => this.quoteInfo = quote)
-    }
-  }
+
+let quoteInfo = ref({})
+let showLoader = ref()
+let showResult = ref(false)
+function fetchAPI() {
+  showResult.value = true
+  showLoader.value = true
+  quoteInfo.value = {}
+  fetch('https://animechan.vercel.app/api/random')
+  .then(response => response.json())
+  .then(quote => quoteInfo.value = quote)
+  showLoader.value = false
 }
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Neucha&display=swap');
 * {
   margin: 0;
   padding: 0;
