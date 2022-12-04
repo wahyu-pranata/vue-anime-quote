@@ -1,13 +1,11 @@
 <template>
-  <button @click="$emit('generated')">{{ text }}</button>
+  <button @click="$emit('generate')">{{ text }}</button>
 </template>
 
-<script>
-export default {
-  props: {
-    text: String
-  }
-}
+<script setup>
+defineProps({
+  text: String
+})
 </script>
 
 <style scoped>
