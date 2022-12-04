@@ -12,8 +12,8 @@ defineProps({
   button {
     padding: 4px 12px;
     margin-top: 12px;
-    border: 2px solid #562135;
-    background-color: #74204A;
+    background-color: #0369a1;
+    border: none;
     font-size: 1.02em;
     color: #fff;
     cursor: pointer;

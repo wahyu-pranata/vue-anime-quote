@@ -1,8 +1,8 @@
 <template>
   <div class="heading">
     <h1>Random Anime Quote Generator</h1>
+    <p>Made with <a href="https://animechan.vercel.app/">Animechan API</a></p>
   </div>
-  <p>Made with <a href="https://animechan.vercel.app/">Animechan API</a></p>
   <Generate @generate="fetchAPI" :text="Object.keys(quoteInfo).length === 0 ? 'Generate quote' : 'Refresh quote'"/>
   <Result 
     v-if="showResult"
@@ -30,15 +30,16 @@ function fetchAPI() {
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap');
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: Arial, sans-serif
+  font-family: "Josefin Sans" ,Arial, sans-serif;
 }
 #app {
   height: 100vh;
-  background-image: linear-gradient(to bottom right, #c3829e, #e9b1cd);
+  background-image: linear-gradient(to bottom right, #0f172a, #1e293b);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -46,44 +47,20 @@ function fetchAPI() {
 }
 .heading {
   position: relative;
+  text-align: center;
 }
 .heading h1 {
-  font-family: "Neucha";
-  color:#562135;
-  text-align: center;
-  display: flex;
-  position: relative;
+  color: #f8fafc;
 }
-.heading h1::before {
-  content: url("../src/assets/sakura.png");
-  z-index: 2;
-  position: absolute;
-  top: -30px;
-  left: -35px;
-  opacity: 0.8;
+.heading p {
+  color: #f8fafcaa;
 }
-.heading h1::after {
-  content: url("../src/assets/sakura.png");
-  z-index: 2;
-  position: absolute;
-  bottom: -45px;
-  right: -35px;
-  opacity: 0.8;
-}
-.heading img {
-  position: absolute;
-  top:-25px;
-  left:-30px;
-  width: 50px;
-  opacity: 0.8;
+.heading a {
+  color: #f8fafcaa;
 }
 @media (max-width: 476px) {
   .heading {
     width: 80%;
-  }
-  .heading img {
-    top: -10;
-    left: -10;
   }
 }
 </style>
